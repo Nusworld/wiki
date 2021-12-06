@@ -34,3 +34,6 @@ build/
 
 ### Project SQL ###
 doc/all.sql
+
+### Project Log File ###
+log/
