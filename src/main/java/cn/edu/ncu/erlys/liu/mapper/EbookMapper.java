@@ -2,9 +2,12 @@ package cn.edu.ncu.erlys.liu.mapper;
 
 import cn.edu.ncu.erlys.liu.pojo.Ebook;
 import cn.edu.ncu.erlys.liu.pojo.EbookExample;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+@Mapper
 public interface EbookMapper {
     long countByExample(EbookExample example);
 
