@@ -78,19 +78,19 @@
 
 <script lang="ts">
 
-const listData: Record<string, string>[] = [];
-
-for (let i = 0; i < 23; i++) {
-  listData.push({
-    href: 'https://www.antdv.com/',
-    title: `ant design vue part ${i}`,
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    description:
-        'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-        'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-  });
-}
+// const listData: Record<string, string>[] = [];
+//
+// for (let i = 0; i < 23; i++) {
+//   listData.push({
+//     href: 'https://www.antdv.com/',
+//     title: `ant design vue part ${i}`,
+//     avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+//     description:
+//         'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+//     content:
+//         'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+//   });
+// }
 
 
 import {defineComponent, onMounted, reactive, ref, toRef} from 'vue';
@@ -109,7 +109,7 @@ export default defineComponent({
     const ebooks = ref();
     const ebooks_1 = reactive({books: []});
     onMounted(() => {
-      axios.get("http://localhost:8882/ebook/list?name=Vue").then((resp) => {
+      axios.get("http://localhost:8882/ebook/list").then((resp) => {
         const data = resp.data;
         ebooks.value = data.data;
         ebooks_1.books = data.data;
@@ -130,7 +130,6 @@ export default defineComponent({
     ];
 
     return {
-      listData,
       pagination,
       actions,
       ebooks,
@@ -139,3 +138,13 @@ export default defineComponent({
   }
 });
 </script>
+
+<style scoped>
+  .ant-avatar {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 8%;
+    margin: 5px 0;
+  }
+</style>
