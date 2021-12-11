@@ -55,17 +55,35 @@
           Content
         </a-layout-content>
       </a-layout>
+      <pre>
+        {{books}}
+      </pre>
     </a-layout-content>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import {defineComponent, onMounted, reactive, ref, toRef} from 'vue';
+import axios from 'axios';
 
 export default defineComponent({
   name: 'Home',
-  components: {
-    HelloWorld,
-  },
+  setup() {
+    console.log("set up");
+    const ebooks = ref();
+    const ebooks_1 = reactive({books: []});
+    onMounted(() => {
+      axios.get("http://localhost:8882/ebook/list?name=Vue").then((resp)=> {
+        const data = resp.data;
+        ebooks.value = data.data;
+        ebooks_1.books = data.data;
+        // console.log(data.data);
+      });
+    });
+
+    return {
+      ebooks,
+      books: toRef(ebooks_1, "books")
+    };
+  }
 });
 </script>
