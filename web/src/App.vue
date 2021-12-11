@@ -2,20 +2,20 @@
   <a-layout>
     <TheHeader/>
     <router-view/>
-    <a-layout-footer style="text-align: center">
-        Lzh的电子书 Designed by Liu in 2021 12
-    </a-layout-footer>
+    <TheFooter/>
   </a-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import TheHeader from '@/components/the-header.vue';
+import TheFooter from "@/components/the-footer.vue";
 
 export default defineComponent({
   name: 'the-header',
   components: {
     TheHeader,
+    TheFooter,
   },
 });
 </script>
