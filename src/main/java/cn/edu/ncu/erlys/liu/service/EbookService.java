@@ -5,6 +5,7 @@ import cn.edu.ncu.erlys.liu.pojo.Ebook;
 import cn.edu.ncu.erlys.liu.pojo.EbookExample;
 import cn.edu.ncu.erlys.liu.req.EbookReq;
 import cn.edu.ncu.erlys.liu.resp.EbookResp;
+import cn.edu.ncu.erlys.liu.resp.PageResp;
 import cn.edu.ncu.erlys.liu.util.CopyUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -24,7 +25,7 @@ public class EbookService {
 
     private static final Logger LOG = LoggerFactory.getLogger(EbookService.class);
 
-    public List<EbookResp> list(EbookReq req) {
+    public PageResp<EbookResp> list(EbookReq req) {
         EbookExample ebookExample = new EbookExample();
         EbookExample.Criteria criteria = ebookExample.createCriteria();
         if (!ObjectUtils.isEmpty(req.getName())) {
@@ -43,7 +44,11 @@ public class EbookService {
 //                    return resp;
 //                })
 //                .collect(Collectors.toList());
-        return CopyUtil.copyList(ebooksList, EbookResp.class);
+        List<EbookResp> list = CopyUtil.copyList(ebooksList, EbookResp.class);
+        PageResp<EbookResp> pageResp = new PageResp<>();
+        pageResp.setTotal(pageInfo.getTotal());
+        pageResp.setList(list);
+        return pageResp;
     }
 
 }
